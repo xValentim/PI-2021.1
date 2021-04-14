@@ -28,7 +28,8 @@ O nome da sua função deve ser calcula_estado'''
 
 def calcula_estado(lista):
     for aluno in lista:
-        nota_quizz = (sum(aluno[1]) / 5)
+        aluno[1].remove(min(aluno[1]))
+        nota_quizz = (sum(aluno[1]) / len(aluno[1]))
         nota_AI = aluno[2][0]
         nota_AF = aluno[2][1]
         nota_final = nota_quizz * 0.1 + nota_AI * 0.4 + nota_AF * 0.5
