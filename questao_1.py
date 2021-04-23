@@ -20,25 +20,31 @@ Você pode assumir que não serão testados valores negativos.
 
 O nome da sua função deve ser valida_data'''
 
+def eh_bissexto(ano):
+    if ano % 4 == 0 and ano % 4 != 0:
+        return True
+    elif ano % 400 == 0:
+        return True
+    else:
+        return False
+
+def valida_data(dia, mes, ano):
+    if dia > 31 or dia == 0 or mes > 12 or mes == 0:
+        return False
+    if eh_bissexto(ano):
+        meses_bissextos = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        indice = mes - 1
+        if dia > meses_bissextos[indice]:
+            return False
+    else:
+        meses_normais = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        indice = mes - 1
+        if dia > meses_normais[indice]:
+            return False
+    return True
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+'''
 def eh_bissexto(a):
     if a % 4 == 0 and not(a % 100 == 0):
         return True
@@ -63,4 +69,4 @@ def valida_data(dia, mes, ano):
         if dia > meses_normais[mes - 1]:
             return False
     return True
-        
+        '''

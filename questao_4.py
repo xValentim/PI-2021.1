@@ -1,5 +1,8 @@
 '''Calcula estado do aluno
-Chegamos ao meio do semestre, os professores precisam de um Sistema para calcular aprovação ou reprovação dos alunos. A fim de auxiliar os professores, faça uma função, chamada calcula_estado. Essa função recebe uma lista como parâmetro, sendo que cada elemento da lista é um registro de aluno e suas notas, por exemplo:
+Chegamos ao meio do semestre, os professores precisam de um Sistema para calcular aprovação ou
+reprovação dos alunos. A fim de auxiliar os professores, faça uma função, chamada calcula_estado.
+Essa função recebe uma lista como parâmetro, sendo que cada elemento da lista é um registro de aluno
+e suas notas, por exemplo:
 
 Parâmetro de entrada:
 
@@ -26,6 +29,36 @@ Aprovação (A) é dada se, e somente se, a média for maior ou igual a 5. Caso 
 
 O nome da sua função deve ser calcula_estado'''
 
+def soma(lista):
+    soma_v = 0
+    for valor in lista:
+        soma_v += valor
+    return soma_v
+
+def media(lista):
+    return soma(lista) / len(lista)
+
+def calcula_estado(lista):
+    for aluno in lista:
+        nome = aluno[0]
+        notas_quizzes = aluno[1]
+        notas_AI_AF = aluno[2]
+        AI = notas_AI_AF[0]
+        AF = notas_AI_AF[1]
+        menor_nota_quizz = min(notas_quizzes)
+        notas_quizzes.remove(menor_nota_quizz)
+        media_quizzes = media(notas_quizzes)
+        media_final = 0.1 * media_quizzes + 0.4 * AI + 0.5 * AF
+        aluno.remove(aluno[2])
+        aluno.remove(aluno[1])
+        if media_final < 5:
+            aluno.append('R')
+        else:
+            aluno.append('A')
+    return lista
+
+'''
+
 def calcula_estado(lista):
     for aluno in lista:
         # Precisa descarta a menor nota
@@ -41,4 +74,4 @@ def calcula_estado(lista):
         else:
             aluno[1] = 'R'
         aluno.remove(aluno[2])
-    return lista
+    return lista'''
