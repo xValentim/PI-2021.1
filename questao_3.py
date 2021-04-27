@@ -11,7 +11,7 @@ necessários para enviar todos os produtos.
 Exemplos:
 
 Para a entrada
-[1000, 500, 400, 200, 50, 450, 1300, 500, 1450, 100]
+[1000, 500, 400, 200, 50, 450, 1300, 500, 1500]
 sua função deve devolver o número 4 (as cores indicam os caminhões).
 Para a entrada
 [1900, 700]
@@ -20,25 +20,36 @@ O nome da sua função deve ser quantos_caminhoes
 
 '''
 
+lista0 = [1000, 500, 400, 200, 50, 450, 1300, 500, 1500] # 3
+lista1 = [1900, 700] # 2
+lista2 = [1900, 700, 1900, 500, 1000] # 4
+lista3 = [1900, 700, 1900, 500, 1500] # 4
+lista4 = [1900, 700, 1900, 500, 1800] # 5
+lista5 = [1900, 700, 1900, 500, 2000] # 5
+lista6 = [100, 1900, 100, 100, 1800, 1, 1, 1] # 3
 
-
-
-
-
-
-
-
-
-
-
-
-import math
 def quantos_caminhoes(lista):
+    caminhoes = 0
     soma = 0
-    cont = 0
-    for i in range(len(lista)):
+    i = 0
+    while i < len(lista):
         soma += lista[i]
-        if soma > 2000:
-            cont += 1
+        if soma == 2000:
+            caminhoes += 1
+            soma = 0
+        elif soma > 2000:
+            caminhoes += 1
             soma = lista[i]
-    return cont + 1
+        if i == len(lista) - 1 and soma > 0:
+            caminhoes += 1
+        i += 1
+    return caminhoes
+
+# Testes
+print(quantos_caminhoes(lista0))
+print(quantos_caminhoes(lista1))
+print(quantos_caminhoes(lista2))
+print(quantos_caminhoes(lista3))
+print(quantos_caminhoes(lista4))
+print(quantos_caminhoes(lista5))
+print(quantos_caminhoes(lista6))
