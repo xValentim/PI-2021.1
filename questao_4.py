@@ -29,6 +29,50 @@ Aprovação (A) é dada se, e somente se, a média for maior ou igual a 5. Caso 
 
 O nome da sua função deve ser calcula_estado'''
 
+lista = [
+    ['Maria', [5.0, 10.0, 0.0, 10.0, 10.0], [6.7, 8.0]],
+    ['Joao', [0.0, 10.0, 10.0, 10.0, 0.0], [6.7, 2.0]],
+    ['Joana', [10.0, 0.0, 10.0, 0.0, 10.0], [6.7, 8.0]]
+]
+
+
+def soma(lista):
+    soma_v = 0
+    for valor in lista:
+        soma_v += valor
+    return soma_v
+
+def media(lista):
+    return soma(lista) / len(lista)
+
+def minimo(lista):
+    referencia = lista[0]
+    for elemento in lista:
+        if elemento < referencia:
+            referencia = elemento
+    minimo = referencia
+    return minimo
+
+def calcula_estado(lista):
+    aux = []
+    for aluno in lista:
+        nome = aluno[0]
+        notas_quizzes = aluno[1]
+        notas_AI_AF = aluno[2]
+        AI = notas_AI_AF[0]
+        AF = notas_AI_AF[1]
+        menor_nota_quizz = minimo(notas_quizzes)
+        notas_quizzes.remove(menor_nota_quizz)
+        media_quizzes = media(notas_quizzes)
+        media_final = 0.1 * media_quizzes + 0.4 * AI + 0.5 * AF
+        if media_final < 5:
+            estado = 'R'
+        else:
+            estado = 'A'
+        aux.append([nome, estado])
+    return aux
+
+'''
 def soma(lista):
     soma_v = 0
     for valor in lista:
@@ -54,12 +98,10 @@ def calcula_estado(lista):
         if media_final < 5:
             aluno.append('R')
         else:
-            aluno.append('A')
-    return lista
+            aluno.append('A')    
+    return lista'''
 
-'''
-
-def calcula_estado(lista):
+'''def calcula_estado(lista):
     for aluno in lista:
         # Precisa descarta a menor nota
         aluno[1].remove(min(aluno[1]))
@@ -75,3 +117,6 @@ def calcula_estado(lista):
             aluno[1] = 'R'
         aluno.remove(aluno[2])
     return lista'''
+
+# Teste
+print(calcula_estado(lista))
